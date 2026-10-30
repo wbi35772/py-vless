@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "py-vless",
+  "main": "src/entry.py",
+  "compatibility_date": "2026-09-24",
+  "compatibility_flags": ["python_workers"],
+  "observability": {
+    "enabled": true
+  },
+  // These are the fields the one-click deploy form asks for.
+  // `uuid` is required and has no usable default: Cloudflare only offers
+  // configuration for variables declared here, and the Worker refuses to serve
+  // until a real UUIDv4 is present. The placeholder below exists purely to make
+  // the form show the field; the Worker treats it as unset.
+  "vars": {
+    "uuid": "94109c19-7f88-4285-8597-423aa2c78d30",
+    "preferred": "www.shopify.com,mfa.gov.ua,www.visa.cn,store.ubi.com",
+    // Relay for reaching Cloudflare-fronted sites. Defaults to a public
+    // service: clear this field to turn the fallback off entirely, or replace
+    // it with your own relay, e.g. "1.2.3.4" or "proxy.example.com:8443".
+    "proxyip": "proxyip.cmliussss.net",
+    // Encrypted Client Hello. "off" disables; "auto" uses the built-in public
+    // name; or give "<name>" / "<name>+<DoH-url>". Only affects TLS nodes.
+    "ech": "cloudflare-ech.com+https://cloudflare-dns.com/dns-query"
+  }
+}
